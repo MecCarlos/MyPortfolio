@@ -7,6 +7,7 @@ import Skills from './pages/Service';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Resume from './pages/Resume';
+import Service from './pages/Service';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/me" element={<About />} />
         <Route path="/resume" element={<Resume />} />
-        <Route path="/competences" element={<Skills />} />
+        <Route path="/service" element={<Service />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<Contact />} />
         {/* <Route path="/blog" element={<Blog />} /> */}

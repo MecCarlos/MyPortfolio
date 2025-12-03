@@ -6,13 +6,12 @@ import { IoLogoJavascript } from "react-icons/io5";
 import { SiPhp } from "react-icons/si";
 import { IoLogoReact } from "react-icons/io5";
 import { SiMysql } from "react-icons/si";
-import { SiBootstrap } from "react-icons/si";
-import { SiFlutter } from "react-icons/si";
 import { SiTailwindcss } from "react-icons/si";
 import { PiScrewdriverFill } from "react-icons/pi";
 import { FaSatelliteDish } from "react-icons/fa";
 import { PiSecurityCameraFill } from "react-icons/pi";
 import { PiSolarPanelFill } from "react-icons/pi";
+import { IoLogoFigma } from "react-icons/io5";
 
 export default function Resume() {
   const [activeTab, setActiveTab] = useState("experience");
@@ -261,9 +260,9 @@ export default function Resume() {
 
               <div className="skill-item">
                 <div className="skill-icon">
-                  <SiBootstrap />
+                  <IoLogoFigma />
                 </div>
-                <span className="skill-name">Bootstrap</span>
+                <span className="skill-name">Figma</span>
               </div>
 
               <div className="skill-item">
