@@ -1,9 +1,13 @@
 import "../assets/style/about.css";
 import { NavLink } from "react-router-dom";
+import me from "../../public/images/me.png"
 
 export default function About() {
   return (
     <div className="page about">
+      {/* Dégradé noir qui couvre la moitié de l'image */}
+      <div className="gradient-overlay"></div>
+      
       <div className="about-container">
         {/* Partie gauche - Contenu texte */}
         <div className="about-content">
@@ -33,9 +37,8 @@ export default function About() {
 
           {/* Plus bas - Nom et spécialités */}
           <div className="personal-info">
-            <div className="name"></div>
             <div className="specialties">
-              <div className="specialty-item">
+              <div className="specialty-item name-item">
                 <span>Charbel QUENUM</span>
               </div>
 
@@ -50,11 +53,8 @@ export default function About() {
 
         {/* Partie droite - Image */}
         <div className="about-image">
-          <div className="image-placeholder">
-            {/* Remplacez par votre image */}
-            <div className="image-frame">
-              <span>Votre image ici</span>
-            </div>
+          <div className="image-container">
+            <img src={me} alt="Charbel QUENUM" className="profile-image" />
           </div>
         </div>
       </div>

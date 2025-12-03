@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
-import Skills from './pages/Skills';
-import Education from './pages/Education';
+import Skills from './pages/Service';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import Resume from './pages/Resume';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         {/* Routes des différentes pages du portfolio */}
         <Route path="/" element={<Home />} />
         <Route path="/me" element={<About />} />
-        <Route path="/resume" element={<Education />} />
+        <Route path="/resume" element={<Resume />} />
         <Route path="/competences" element={<Skills />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<Contact />} />

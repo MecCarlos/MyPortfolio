@@ -41,7 +41,7 @@ const Navbar = () => {
 
           <li className="nav-item">
             <Link 
-              to="/me" 
+              to="/resume" 
               className={`nav-link ${isActive('/resume') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -50,11 +50,11 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link 
-              to="/competences" 
-              className={`nav-link ${isActive('/competences') ? 'nav-link-active' : ''}`}
+              to="/service" 
+              className={`nav-link ${isActive('/service') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              Compétences
+              Services
             </Link>
           </li>
           <li className="nav-item">
