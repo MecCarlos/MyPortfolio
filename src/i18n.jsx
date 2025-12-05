@@ -14,12 +14,17 @@ const resources = {
       "Portfolio": "Portfolio",
       "Contact": "Contact",
       
-      // Home page (exemple)
-      "Welcome": "Bienvenue",
-      "Download CV": "Télécharger CV",
-      "Hire Me": "Engagez-moi",
+      // Home page
+      "webDeveloper": "développeur & designer web",
+      "cv": "CV",
+      "portfolio": "Portfolio",
       
-      // Ajoutez vos autres traductions ici...
+      "aboutMe": "À propos de moi",
+      "bioParagraph1": "Passionné par le développement web et le design, je crée des expériences digitales uniques qui allient esthétique et fonctionnalité. Mon approche combine créativité et expertise technique pour donner vie à vos projets.",
+      "bioParagraph2": "Avec une solide expérience dans les technologies modernes, je m'engage à fournir des solutions innovantes et performantes qui répondent parfaitement à vos besoins.",
+      "designerDeveloper": "Designer & Développeur web",
+      
+    
     }
   },
   en: {
@@ -32,12 +37,16 @@ const resources = {
       "Portfolio": "Portfolio",
       "Contact": "Contact",
       
-      // Home page (exemple)
-      "Welcome": "Welcome",
-      "Download CV": "Download CV",
-      "Hire Me": "Hire Me",
+      // Home page
+      "developpeur web": "web developer & designer",
+      "cv": "CV",
+      "portfolio": "Portfolio",
       
-      // Ajoutez vos autres traductions ici...
+      "aboutMe": "About Me",
+      "bioParagraph1": "Passionate about web development and design, I create unique digital experiences that combine aesthetics and functionality. My approach blends creativity and technical expertise to bring your projects to life.",
+      "bioParagraph2": "With solid experience in modern technologies, I'm committed to delivering innovative and high-performance solutions that perfectly meet your needs.",
+      "designerDeveloper": "Web Designer & Developer",
+
     }
   }
 };

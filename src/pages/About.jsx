@@ -1,8 +1,11 @@
 import "../assets/style/about.css";
 import { NavLink } from "react-router-dom";
-import me from "../../public/images/me.png"
+import { useTranslation } from "react-i18next";
+import me from "../../public/images/me.png";
 
 export default function About() {
+  const { t } = useTranslation(); // Initialisation du hook de traduction
+
   return (
     <div className="page about">
       {/* Dégradé noir qui couvre la moitié de l'image */}
@@ -12,8 +15,8 @@ export default function About() {
         {/* Partie gauche - Contenu texte */}
         <div className="about-content">
           {/* Titre souligné en bleu */}
-          <div className="section-header">
-            <h2 className="section-title">A propos de moi</h2>
+          <div className="section-header"> 
+            <h2 className="section-title">{t("aboutMe")}</h2> {/* Traduction de "A propos de moi" */}
             <div className="underline"></div>
           </div>
 
@@ -23,15 +26,10 @@ export default function About() {
           {/* Biographie */}
           <div className="biography">
             <p>
-              Passionné par le développement web et le design, je crée des
-              expériences digitales uniques qui allient esthétique et
-              fonctionnalité. Mon approche combine créativité et expertise
-              technique pour donner vie à vos projets.
+              {t("bioParagraph1")} {/* Traduction du premier paragraphe */}
             </p>
             <p>
-              Avec une solide expérience dans les technologies modernes, je
-              m'engage à fournir des solutions innovantes et performantes qui
-              répondent parfaitement à vos besoins.
+              {t("bioParagraph2")} {/* Traduction du second paragraphe */}
             </p>
           </div>
 
@@ -39,12 +37,12 @@ export default function About() {
           <div className="personal-info">
             <div className="specialties">
               <div className="specialty-item name-item">
-                <span>Charbel QUENUM</span>
+                <span>Charbel QUENUM</span> {/* Nom reste inchangé */}
               </div>
 
               <div className="specialty-item">
                 <span className="blue-dash"></span>
-                <span>Designer & Développeur web</span>
+                <span>{t("designerDeveloper")}</span> {/* Traduction du métier */}
                 <span className="blue-dash"></span>
               </div>
             </div>
