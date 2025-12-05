@@ -8,6 +8,8 @@ import { GiCircuitry, GiSolarPower } from "react-icons/gi";
 import { HiHomeModern } from "react-icons/hi2";
 import { TbDeviceAnalytics } from "react-icons/tb";
 import { RiAppStoreFill } from "react-icons/ri";
+import { NavLink } from "react-router-dom";
+
 
 export default function Service() {
   const [activeService, setActiveService] = useState(null);
@@ -85,7 +87,6 @@ export default function Service() {
         "Sécurité des données",
         "Sauvegardes et restauration",
         "Migration de données",
-        "Documentation technique"
       ]
     },
     {
@@ -127,7 +128,6 @@ export default function Service() {
       features: [
         "Installation de caméras de surveillance",
         "Configuration des systèmes DVR/NVR",
-        "Réseau de sécurité",
         "Monitoring à distance",
         "Maintenance préventive",
         "Formation utilisateur"
@@ -248,12 +248,12 @@ export default function Service() {
               ou un design d'interface, je suis disponible pour discuter de votre projet.
             </p>
             <div className="cta-buttons">
-              <button className="cta-btn primary">
+              <a href="https://wa.me/56983133"  className="cta-btn primary">
                 Discuter de mon projet
-              </button>
-              <button className="cta-btn secondary">
+              </a>
+              <NavLink to="/portfolio" className="cta-btn secondary">
                 Voir mon portfolio
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>

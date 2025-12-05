@@ -22,7 +22,7 @@
     position: relative;
     font-family: "Poppins", serif;
     overflow: hidden; /* Empêche le scroll */
-}
+
 
 .box.texte {
     color: white;
@@ -293,4 +293,4 @@
     .social-links {
         bottom: 1rem;
     }
-}
+}}

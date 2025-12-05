@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
-import Skills from './pages/Service';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Resume from './pages/Resume';
 import Service from './pages/Service';
+import './i18n';
 
 function App() {
   return (

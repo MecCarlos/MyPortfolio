@@ -1,80 +1,4 @@
-  // const projects = [
-  //   {
-  //     id: 1,
-  //     number: "01",
-  //     title: "Transcash",
-  //     description: "Application de gestion financière et transfert d'argent en ligne. Interface intuitive pour suivre les transactions, générer des rapports détaillés et gérer les comptes utilisateurs avec une sécurité renforcée et cryptage des données.",
-  //     technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "Bootstrap 5"],
-  //     liveLink: "#",
-  //     githubLink: "#",
-  //     images: [
-  //       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-  //     ]
-  //   },
-  //   {
-  //     id: 2,
-  //     number: "02",
-  //     title: "Serenji",
-  //     description: "Plateforme de gestion de projets et collaboration d'équipe développée avec React et Node.js. Système de tâches avancé, tableau de bord analytique, notifications en temps réel et chat intégré pour une gestion optimale des projets.",
-  //     technologies: ["ReactJS", "NodeJS", "Express", "Socket.io", "Bootstrap CSS"],
-  //     liveLink: "#",
-  //     githubLink: "#",
-  //     images: [
-  //       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-  //     ]
-  //   },
-  //   {
-  //     id: 3,
-  //     number: "03",
-  //     title: "BEI Bank",
-  //     description: "Application bancaire en ligne sécurisée avec système de gestion de comptes, virements, prêts et épargne. Interface responsive, authentification à deux facteurs et tableau de bord financier personnalisé pour les clients.",
-  //     technologies: ["ReactJS", "Node.js", "MySQL", "JWT", "Chart.js"],
-  //     liveLink: "https://vercel.com/meccarlos-projects/bei-bank-szg5/HUnDcGK2DNdwHaTFcdi7seNoMKCX",
-  //     githubLink: "https://github.com/MecCarlos/BEIBank",
-  //     images: [
-  //       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-  //     ]
-  //   },
-  //   {
-  //     id: 4,
-  //     number: "04",
-  //     title: "Olatech Store",
-  //     description: "Site e-commerce moderne spécialisé en produits technologiques. Catalogue dynamique, panier intelligent, système de paiement sécurisé, gestion des stocks et espace client avec historique des commandes.",
-  //     technologies: ["ReactJS", "NodeJS" ,"MySQL", "Stripe API", "Material-UI", "CSS3", "Bootstrap"],
-  //     liveLink: "https://vercel.com/meccarlos-projects/gse-front/BQwxWPwX4ymHDUPQRNX3WX2gEvyd",
-  //     githubLink: "https://github.com/MecCarlos/GSE-front",
-  //     images: [
-  //       "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-  //     ]
-  //   },
-  //   {
-  //     id: 5,
-  //     number: "05",
-  //     title: "Portfolio Personnel",
-  //     description: "Portfolio moderne et responsive présentant mes compétences et réalisations. Design épuré avec animations fluides, sections interactives, mode sombre/clair et optimisation des performances pour une expérience utilisateur optimale.",
-  //     technologies: ["ReactJS", "CSS3", "JavaScript", "React Router", "EmailJS", "Framer Motion"],
-  //     liveLink: "#",
-  //     githubLink: "https://github.com/MecCarlos/MyPortfolio",
-  //     images: [
-  //       "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //       "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-  //     ]
-  //   }
-  // ];
-
-
-
-
-  import { useState } from "react";
+import { useState } from "react";
 import "../assets/style/portfolio.css";
 import { FaGithub } from "react-icons/fa";
 import { HiExternalLink } from "react-icons/hi";
@@ -105,7 +29,7 @@ export default function Portfolio() {
       id: 2,
       number: "02",
       title: "Serenji",
-      description: "Plateforme de gestion de projets et collaboration d'équipe développée avec React et Node.js. Système de tâches avancé, tableau de bord analytique, notifications en temps réel et chat intégré pour une gestion optimale des projets.",
+      description: "Plateforme de d'accès et  gestion de médicaments en cour de developpement avec  React et Node.js. Système de tâches avancé, tableau de bord analytique, notifications en temps réel et chat intégré pour une gestion optimale des porduits.",
       technologies: ["ReactJS", "NodeJS", "Express", "MongoDB", "Socket.io", "Tailwind CSS"],
       liveLink: "#",
       githubLink: "#",
@@ -121,8 +45,8 @@ export default function Portfolio() {
       title: "BEI Bank",
       description: "Application bancaire en ligne sécurisée avec système de gestion de comptes, virements, prêts et épargne. Interface responsive, authentification à deux facteurs et tableau de bord financier personnalisé pour les clients.",
       technologies: ["ReactJS", "TypeScript", "Node.js", "PostgreSQL", "JWT", "Chart.js"],
-      liveLink: "#",
-      githubLink: "#",
+      liveLink: "https://bei-bank-szg5.vercel.app",
+      githubLink: "https://github.com/MecCarlos/BEIBank",
       images: [
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -135,8 +59,8 @@ export default function Portfolio() {
       title: "Olatech Store",
       description: "Site e-commerce moderne spécialisé en produits technologiques. Catalogue dynamique, panier intelligent, système de paiement sécurisé, gestion des stocks et espace client avec historique des commandes.",
       technologies: ["ReactJS", "Redux Toolkit", "Firebase", "Stripe API", "Material-UI", "CSS3"],
-      liveLink: "#",
-      githubLink: "#",
+      liveLink: "https://gse-front.vercel.app/",
+      githubLink: "https://github.com/MecCarlos/GSE-front",
       images: [
         "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -288,7 +212,7 @@ export default function Portfolio() {
           <div className="portfolio-carousel">
             <div className="carousel-header">
               <div className="carousel-title">
-                <h3>{projects[activeProject].title}</h3>
+                <h4>{projects[activeProject].title}</h4>
                 <span className="project-type">
                   {projects[activeProject].id === 1 ? "Web 3D" : 
                    projects[activeProject].id === 2 ? "Gestion de Projets" :
@@ -311,7 +235,7 @@ export default function Portfolio() {
                       loading="lazy"
                     />
                     <div className="image-overlay">
-                      <span className="project-name">{projects[activeProject].title}</span>
+                      {/* <span className="project-name">{projects[activeProject].title}</span> */}
                       <span 
                         className="image-counter"
                         style={{ backgroundColor: getProjectColor(projects[activeProject].id) }}
@@ -370,7 +294,7 @@ export default function Portfolio() {
             onClick={handlePrevProject}
           >
             <BsChevronLeft />
-            <span>Projet précédent</span>
+            {/* <span>Projet précédent</span> */}
           </button>
           
           <div className="project-indicators">
@@ -393,7 +317,7 @@ export default function Portfolio() {
             className="project-nav next"
             onClick={handleNextProject}
           >
-            <span>Projet suivant</span>
+            {/* <span>Projet suivant</span> */}
             <BsChevronRight />
           </button>
         </div>
@@ -408,9 +332,9 @@ export default function Portfolio() {
               Parlons de votre prochain projet !
             </p>
             <div className="cta-buttons">
-              <button className="cta-btn primary">
+              {/* <button className="cta-btn primary">
                 Voir la démo 3D
-              </button>
+              </button> */}
               <button className="cta-btn secondary">
                 Discuter d'un projet
               </button>

@@ -6,6 +6,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import { FaLinkedinIn } from "react-icons/fa";
 
+
 export default function Home() {
   return (
     <div className="page home">
@@ -16,8 +17,8 @@ export default function Home() {
 
         {/* Boutons */}
         <div className="button-container">
-          <NavLink to="/me" className="btn btn-outline">
-            Résumé
+          <NavLink to="/resume" className="btn btn-outline">
+            CV
           </NavLink>
           <NavLink to="/portfolio" className="btn btn-outline">
             Portfolio
@@ -26,10 +27,10 @@ export default function Home() {
 
         {/* Liens sociaux en bas */}
         <div className="social-links">
-          <a href="#" className="social-link"><MdOutlineWhatsapp /></a>
-          <a href="#" className="social-link"><FaFacebookF /></a>
-          <a href="#" className="social-link"><LuGithub /></a>
-          <a href="#" className="social-link"><FaLinkedinIn /></a>
+          <a href="https://wa.me/56983133" className="social-link"><MdOutlineWhatsapp /></a>
+          <a href="https://www.facebook.com/profile.php?id=61582122567785" className="social-link"><FaFacebookF /></a>
+          <a href="https://github.com/MecCarlos" className="social-link"><LuGithub /></a>
+          <a href="https://www.linkedin.com/in/charbel-quenum-0719a2372/" className="social-link"><FaLinkedinIn /></a>
         </div>
       </div>
     </div>
