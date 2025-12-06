@@ -16,7 +16,7 @@ import { IoLogoFigma } from "react-icons/io5";
 export default function Resume() {
   const [activeTab, setActiveTab] = useState("experience");
   const [theme, setTheme] = useState('light');
-
+ 
   // Détecter le thème actuel
   useEffect(() => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';

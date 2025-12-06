@@ -64,6 +64,7 @@ export default function Contact() {
       // Réinitialiser le formulaire
       setFormData({
         name: "",
+        surname: "",
         email: "",
         subject: "",
         message: ""
@@ -148,6 +149,15 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                 />
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Votre prénnom *"
+                  value={formData.surname}
+                  onChange={handleChange}
+                  required
+                />
                 
                 <input
                   type="email"
@@ -188,7 +198,7 @@ export default function Contact() {
                 ) : (
                   <>
                     <FaPaperPlane className="submit-icon" />
-                    Envoyer le message
+                    Envoyer
                   </>
                 )}
               </button>
