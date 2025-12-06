@@ -38,7 +38,7 @@ const resources = {
       "Contact": "Contact",
       
       // Home page
-      "developpeur web": "web developer & designer",
+      "webDeveloper": "web developer & designer",
       "cv": "CV",
       "portfolio": "Portfolio",
       

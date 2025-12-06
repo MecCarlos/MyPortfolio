@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../assets/style/resume.css";
 import { FaHtml5 } from "react-icons/fa6";
 import { IoLogoCss3 } from "react-icons/io5";
@@ -15,6 +15,27 @@ import { IoLogoFigma } from "react-icons/io5";
 
 export default function Resume() {
   const [activeTab, setActiveTab] = useState("experience");
+  const [theme, setTheme] = useState('light');
+
+  // Détecter le thème actuel
+  useEffect(() => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    setTheme(currentTheme);
+
+    // Observer les changements de thème
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          const newTheme = document.documentElement.getAttribute('data-theme');
+          setTheme(newTheme);
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    
+    return () => observer.disconnect();
+  }, []);
 
   const tabs = [
     { id: "experience", label: "Expérience" },
@@ -192,8 +213,6 @@ export default function Resume() {
                   électroniques, conception de circuits et dépannage des équipements techniques.
                 </p>
               </div>
-
-              
             </div>
           </div>
         );
@@ -395,7 +414,7 @@ export default function Resume() {
               <div className="info-row">
                 <div className="info-item">
                   <p>
-                    Email Professionnel<span>quenumcarlos20@gmail.com</span>
+                    Email<span>quenumcarlos20@gmail.com</span>
                   </p>
                 </div>
 
@@ -409,7 +428,7 @@ export default function Resume() {
               <div className="info-row">
                 <div className="info-item">
                   <p>
-                    Email Secondaire<span>quenumcarlos20@icloud.com</span>
+                    Email<span>quenumcarlos20@icloud.com</span>
                   </p>
                 </div>
 

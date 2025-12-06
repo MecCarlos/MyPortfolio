@@ -1,12 +1,57 @@
-/* Variables communes */
+/* Variables pour les thèmes */
 :root {
+  /* Couleurs Light Theme (par défaut) */
   --main-color: #007bff;
-  --bg-color: #000;
-  --second-bg-color: #111;
-  --text-color: #fff;
-  --white-color: #fff;
-  --border-color: #333;
-  --success-color: #10B981;
+  --bg-color-light: #f8f9fa;
+  --second-bg-color-light: #ffffff;
+  --text-color-light: #333333;
+  --white-color-light: #ffffff;
+  --border-color-light: #e0e0e0;
+  --success-color-light: #10B981;
+  --placeholder-color-light: rgba(0, 0, 0, 0.5);
+  --gradient-end-light: rgba(248, 249, 250, 0);
+  
+  /* Couleurs Dark Theme */
+  --bg-color-dark: #000000;
+  --second-bg-color-dark: #111111;
+  --text-color-dark: #ffffff;
+  --white-color-dark: #ffffff;
+  --border-color-dark: #333333;
+  --success-color-dark: #10B981;
+  --placeholder-color-dark: rgba(255, 255, 255, 0.5);
+  --gradient-end-dark: rgba(0, 0, 0, 0);
+  
+  /* Variables actives (seront surchargées par data-theme) */
+  --bg-color: var(--bg-color-light);
+  --second-bg-color: var(--second-bg-color-light);
+  --text-color: var(--text-color-light);
+  --white-color: var(--white-color-light);
+  --border-color: var(--border-color-light);
+  --success-color: var(--success-color-light);
+  --placeholder-color: var(--placeholder-color-light);
+  --gradient-end: var(--gradient-end-light);
+}
+
+[data-theme="light"] {
+  --bg-color: var(--bg-color-light);
+  --second-bg-color: var(--second-bg-color-light);
+  --text-color: var(--text-color-light);
+  --white-color: var(--white-color-light);
+  --border-color: var(--border-color-light);
+  --success-color: var(--success-color-light);
+  --placeholder-color: var(--placeholder-color-light);
+  --gradient-end: var(--gradient-end-light);
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--bg-color-dark);
+  --second-bg-color: var(--second-bg-color-dark);
+  --text-color: var(--text-color-dark);
+  --white-color: var(--white-color-dark);
+  --border-color: var(--border-color-dark);
+  --success-color: var(--success-color-dark);
+  --placeholder-color: var(--placeholder-color-dark);
+  --gradient-end: var(--gradient-end-dark);
 }
 
 .page.contact {
@@ -18,23 +63,40 @@
   font-family: "Poppins", serif;
   position: relative;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-y: auto;
+}
 
-/* Dégradé similaire aux autres pages */
+/* Dégradé adapté au thème */
 .contact-gradient-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 40%;
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+[data-theme="light"] .contact-gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 249, 250, 1) 0%,
+    rgba(248, 249, 250, 0.9) 30%,
+    rgba(248, 249, 250, 0.7) 60%,
+    var(--gradient-end-light) 100%
+  );
+}
+
+[data-theme="dark"] .contact-gradient-overlay {
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 1) 0%,
     rgba(0, 0, 0, 0.9) 30%,
     rgba(0, 0, 0, 0.7) 60%,
-    rgba(0, 0, 0, 0) 100%
+    var(--gradient-end-dark) 100%
   );
-  z-index: 1;
-  pointer-events: none;
 }
 
 .contact-container {
@@ -47,6 +109,7 @@
   grid-template-columns: 1fr 1.3fr;
   gap: 2.5rem;
   align-items: start;
+  min-height: auto;
 }
 
 @media (max-width: 992px) {
@@ -69,6 +132,22 @@
 .contact-box.left-box {
   align-self: start;
   padding-top: 1rem;
+  max-height: calc(100vh - 10rem);
+  overflow-y: auto;
+}
+
+.contact-box.left-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.contact-box.left-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contact-box.left-box::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 2px;
+  transition: background 0.3s ease;
 }
 
 .contact-box h2 {
@@ -77,18 +156,21 @@
   color: var(--text-color);
   margin-bottom: 1rem;
   line-height: 1.2;
+  transition: color 0.3s ease;
 }
 
 .contact-box p {
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 .contact-box .desc {
   margin: 1rem 0 1.5rem;
-  color: var(--white-color);
+  color: var(--text-color);
   opacity: 0.9;
+  transition: color 0.3s ease;
 }
 
 /* Détails de contact */
@@ -111,6 +193,7 @@
   min-width: 45px;
   min-height: 45px;
   flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
 .detail {
@@ -122,16 +205,17 @@
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.2rem;
+  transition: color 0.3s ease;
 }
 
 .detail-info {
-  color: var(--white-color);
+  color: var(--text-color);
   font-size: 0.95rem;
   opacity: 0.9;
   margin: 0;
   word-break: break-word;
+  transition: color 0.3s ease;
 }
-
 
 /* Formulaire */
 .contact-box.right-box form {
@@ -140,6 +224,8 @@
   border-radius: 0.8rem;
   text-align: center;
   width: 100%;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
 }
 
 .heading {
@@ -147,6 +233,7 @@
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .heading span {
@@ -171,10 +258,10 @@
 .field-box textarea {
   padding: 0.9rem 1rem;
   background: var(--bg-color);
-  border: 1px solid var(--bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   font-size: 0.95rem;
-  color: var(--white-color);
+  color: var(--text-color);
   font-family: "Poppins", serif;
   transition: all 0.3s ease;
 }
@@ -188,8 +275,9 @@
 
 .field-box input::placeholder,
 .field-box textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--placeholder-color);
   font-size: 0.9rem;
+  transition: color 0.3s ease;
 }
 
 .field-box textarea {
@@ -197,7 +285,7 @@
   height: 12rem;
   resize: vertical;
   min-height: 120px;
-  max-height: 180px; /* Réduit pour laisser de la place */
+  max-height: 180px;
 }
 
 /* Bouton d'envoi */
@@ -262,6 +350,8 @@
   align-items: center;
   justify-content: center;
   min-height: 380px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
 }
 
 .success-icon {
@@ -287,15 +377,17 @@
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
+  transition: color 0.3s ease;
 }
 
 .success-text {
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--white-color);
+  color: var(--text-color);
   opacity: 0.9;
   margin-bottom: 1.5rem;
   max-width: 300px;
+  transition: color 0.3s ease;
 }
 
 .success-btn {
@@ -316,6 +408,14 @@
   transform: translateY(-2px);
 }
 
+/* Animation de transition globale */
+.contact * {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .contact-container {
@@ -331,10 +431,8 @@
   
   .contact-box.left-box {
     padding-top: 0;
-  }
-  
-  .social-links {
-    grid-template-columns: repeat(2, 1fr);
+    max-height: none;
+    overflow-y: visible;
   }
 }
 
@@ -377,18 +475,6 @@
   
   .detail-info {
     font-size: 0.85rem;
-  }
-  
-  .social-box {
-    padding: 1.2rem;
-  }
-  
-  .social-title {
-    font-size: 1.1rem;
-  }
-  
-  .social-link {
-    padding: 0.7rem 0.9rem;
   }
   
   .field-box textarea {
@@ -445,31 +531,4 @@
     min-height: 100px;
     max-height: 120px;
   }
-  
-  .social-links {
-    grid-template-columns: 1fr;
-  }
 }
-
-/* Pour s'assurer qu'il n'y a pas de débordement */
-.page.contact {
-  overflow-y: auto;
-}
-
-.contact-container {
-  min-height: auto;
-}
-
-.contact-box.left-box {
-  max-height: calc(100vh - 10rem);
-  overflow-y: auto;
-}
-
-.contact-box.left-box::-webkit-scrollbar {
-  width: 4px;
-}
-
-.contact-box.left-box::-webkit-scrollbar-thumb {
-  background: var(--main-color);
-  border-radius: 2px;
-}}

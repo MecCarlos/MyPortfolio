@@ -1,28 +1,70 @@
 .about {
     width: 100%;
     height: 100vh;
-    background: #000;
-    color: white;
     font-family: "Poppins", serif;
     position: relative;
     overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dégradé noir qui couvre exactement la moitié de l'écran */
+/* Variables pour les thèmes */
+:root {
+    --about-bg-light: #f8f9fa;
+    --about-bg-dark: #000000;
+    --about-text-light: #333333;
+    --about-text-dark: #ffffff;
+    --about-text-secondary-light: #666666;
+    --about-text-secondary-dark: #cccccc;
+    --about-gradient-start-light: rgba(248, 249, 250, 0.98);
+    --about-gradient-start-dark: rgba(0, 0, 0, 0.98);
+    --about-gradient-end-light: rgba(248, 249, 250, 0);
+    --about-gradient-end-dark: rgba(0, 0, 0, 0);
+    --accent-color: #007bff;
+    --circle-border-light: rgba(255, 255, 255, 0.1);
+    --circle-border-dark: rgba(0, 0, 0, 0.1);
+    --circle-shadow-light: rgba(0, 0, 0, 0.1);
+    --circle-shadow-dark: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .about {
+    background: var(--about-bg-light);
+    color: var(--about-text-light);
+}
+
+[data-theme="dark"] .about {
+    background: var(--about-bg-dark);
+    color: var(--about-text-dark);
+}
+
+/* Dégradé qui couvre exactement la moitié de l'écran */
 .gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+[data-theme="light"] .gradient-overlay {
     background: linear-gradient(90deg,
-            rgba(0, 0, 0, 0.98) 0%,
+            var(--about-gradient-start-light) 0%,
+            rgba(248, 249, 250, 0.95) 20%,
+            rgba(248, 249, 250, 0.85) 40%,
+            rgba(248, 249, 250, 0.7) 60%,
+            rgba(248, 249, 250, 0.4) 80%,
+            var(--about-gradient-end-light) 100%);
+}
+
+[data-theme="dark"] .gradient-overlay {
+    background: linear-gradient(90deg,
+            var(--about-gradient-start-dark) 0%,
             rgba(0, 0, 0, 0.95) 20%,
             rgba(0, 0, 0, 0.85) 40%,
             rgba(0, 0, 0, 0.7) 60%,
             rgba(0, 0, 0, 0.4) 80%,
-            rgba(0, 0, 0, 0) 100%);
-    z-index: 1;
+            var(--about-gradient-end-dark) 100%);
 }
 
 .about-container {
@@ -49,7 +91,7 @@
     justify-content: center;
 }
 
-/* Titre souligné en bleu */
+/* Titre souligné */
 .section-header {
     margin-bottom: 0.5rem;
 }
@@ -57,14 +99,22 @@
 .section-title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: white;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+[data-theme="light"] .section-title {
+    color: var(--about-text-light);
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--about-text-dark);
 }
 
 .underline {
     width: 80px;
     height: 4px;
-    background: #007bff;
+    background: var(--accent-color);
     border-radius: 2px;
 }
 
@@ -82,7 +132,15 @@
     font-size: 1rem;
     font-weight: 300;
     margin-bottom: 1rem;
-    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+[data-theme="light"] .biography p {
+    color: var(--about-text-secondary-light);
+}
+
+[data-theme="dark"] .biography p {
+    color: var(--about-text-secondary-dark);
 }
 
 /* Informations personnelles */
@@ -101,15 +159,22 @@
     align-items: center;
     gap: 1rem;
     font-size: 1rem;
-    color: #ccc;
     text-align: center;
     justify-content: center;
+    transition: color 0.3s ease;
+}
+
+[data-theme="light"] .specialty-item {
+    color: var(--about-text-secondary-light);
+}
+
+[data-theme="dark"] .specialty-item {
+    color: var(--about-text-secondary-dark);
 }
 
 .name-item {
     font-size: 1rem !important;
     font-weight: 700;
-    color: white !important;
     justify-content: flex-start;
     gap: 0;
     text-align: center;
@@ -117,42 +182,138 @@
     justify-content: center;
 }
 
+[data-theme="light"] .name-item {
+    color: var(--about-text-light) !important;
+}
+
+[data-theme="dark"] .name-item {
+    color: var(--about-text-dark) !important;
+}
+
 .blue-dash {
     width: 25px;
     height: 2px;
-    background: #007bff;
+    background: var(--accent-color);
     display: inline-block;
 }
 
-/* Partie droite - Image qui prend toute la hauteur */
+/* Partie droite - Image dans un cercle */
 .about-image {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
+    padding-left: 0;
 }
 
-.image-container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+.circle-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin-left: -50px;
+    /* Décalage pour aligner avec la partie gauche */
 }
 
-.profile-image {
+.image-circle {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .image-circle {
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .image-circle {
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+.profile-image-circle {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(1.1) contrast(1.1);
+    transition: transform 0.3s ease;
 }
 
-/* RESPONSIVE - Version sans scroll */
+.image-circle:hover .profile-image-circle {
+    transform: scale(1.05);
+}
+
+/* .image-circle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 123, 255, 0.3);
+} */
+
+/* Cercles décoratifs */
+.decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .decorative-circle {
+    border-color: var(--circle-border-light);
+}
+
+[data-theme="dark"] .decorative-circle {
+    border-color: var(--circle-border-dark);
+}
+
+.circle-1 {
+    width: 450px;
+    height: 450px;
+    top: -25px;
+    left: -25px;
+    border-style: dashed;
+    opacity: 0.3;
+    animation: rotate 20s linear infinite;
+}
+
+.circle-2 {
+    width: 500px;
+    height: 500px;
+    top: -50px;
+    left: -50px;
+    border-style: dotted;
+    opacity: 0.2;
+    animation: rotate 25s linear infinite reverse;
+}
+
+.circle-3 {
+    width: 550px;
+    height: 550px;
+    top: -75px;
+    left: -75px;
+    border-style: solid;
+    opacity: 0.15;
+    animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* RESPONSIVE */
 @media screen and (max-width: 1200px) {
-    .about
-    {
+    .about {
         overflow: auto;
     }
 
@@ -168,51 +329,99 @@
     .name-item {
         font-size: 1.6rem !important;
     }
+
+    .circle-container {
+        width: 350px;
+        height: 350px;
+        margin-left: -30px;
+    }
+
+    .circle-1 {
+        width: 400px;
+        height: 400px;
+    }
+
+    .circle-2 {
+        width: 450px;
+        height: 450px;
+    }
+
+    .circle-3 {
+        width: 500px;
+        height: 500px;
+    }
 }
 
 @media screen and (max-width: 992px) {
     .about-container {
         grid-template-columns: 1fr;
-        grid-template-rows: 50vh 50vh;
+        grid-template-rows: auto auto;
+        gap: 2rem;
     }
 
     .gradient-overlay {
         width: 100%;
         height: 50%;
+        top: 0;
+    }
+
+    [data-theme="light"] .gradient-overlay {
+        background: linear-gradient(180deg,
+                rgba(248, 249, 250, 0.95) 0%,
+                rgba(248, 249, 250, 0.8) 30%,
+                rgba(248, 249, 250, 0.5) 60%,
+                var(--about-gradient-end-light) 100%);
+    }
+
+    [data-theme="dark"] .gradient-overlay {
         background: linear-gradient(180deg,
                 rgba(0, 0, 0, 0.95) 0%,
                 rgba(0, 0, 0, 0.8) 30%,
                 rgba(0, 0, 0, 0.5) 60%,
-                rgba(0, 0, 0, 0) 100%);
-        top: 0;
+                var(--about-gradient-end-dark) 100%);
     }
 
     .about-content {
-        padding: 0 10%;
+        padding: 2rem 10%;
         order: 2;
         max-width: 100%;
-        height: 50vh;
+        height: auto;
         justify-content: flex-start;
-        padding-top: 2rem;
-        gap: 1rem;
+        text-align: center;
     }
 
     .about-image {
         order: 1;
-        height: 50vh;
+        height: auto;
         justify-content: center;
+        padding: 3rem 0;
     }
 
-    .image-container {
-        height: 50vh;
-        justify-content: center;
+    .circle-container {
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
     }
 
-    .profile-image {
-        height: 50vh;
-        width: auto;
-        max-width: 100%;
-        object-fit: contain;
+    .circle-1 {
+        width: 350px;
+        height: 350px;
+        top: -25px;
+        left: -25px;
+    }
+
+    .circle-2 {
+        width: 400px;
+        height: 400px;
+        top: -50px;
+        left: -50px;
+    }
+
+    .circle-3 {
+        width: 450px;
+        height: 450px;
+        top: -75px;
+        left: -75px;
     }
 
     .specialty-item {
@@ -235,8 +444,27 @@
 
 @media screen and (max-width: 768px) {
     .about-content {
-        padding: 0 5%;
-        padding-top: 1.5rem;
+        padding: 2rem 5%;
+    }
+
+    .circle-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .circle-1 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .circle-2 {
+        width: 350px;
+        height: 350px;
+    }
+
+    .circle-3 {
+        width: 400px;
+        height: 400px;
     }
 
     .section-title {
@@ -258,9 +486,34 @@
 
 @media screen and (max-width: 480px) {
     .about-content {
-        padding: 0 1rem;
-        padding-top: 1rem;
+        padding: 1.5rem 1rem;
         gap: 0.8rem;
+    }
+
+    .circle-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .circle-1 {
+        width: 250px;
+        height: 250px;
+        top: -25px;
+        left: -25px;
+    }
+
+    .circle-2 {
+        width: 300px;
+        height: 300px;
+        top: -50px;
+        left: -50px;
+    }
+
+    .circle-3 {
+        width: 350px;
+        height: 350px;
+        top: -75px;
+        left: -75px;
     }
 
     .section-title {
@@ -321,4 +574,9 @@
     .spacer {
         height: 0.5rem;
     }
+}
+
+/* Animation de transition entre les thèmes */
+.about * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }

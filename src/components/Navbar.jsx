@@ -1,49 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+// components/Navbar.js
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import "../assets/style/navbar.css";
-import { TbMoon } from "react-icons/tb";
+import { IoMoonOutline } from "react-icons/io5";
 import { FiSun } from "react-icons/fi";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
-  const [language, setLanguage] = useState("fr");
+  const [theme, setTheme] = useState('light');
+  const { t, i18n } = useTranslation();
   const location = useLocation();
 
   // Initialiser le thème
   useEffect(() => {
-    const savedTheme =
-      localStorage.getItem("theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
-  // Initialiser la langue
+  // Initialiser la langue au démarrage
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") || "fr";
-    setLanguage(savedLanguage);
-    // Vous pouvez ajouter ici la logique pour initialiser i18n
-  }, []);
+    const savedLanguage = localStorage.getItem('language') || 'fr';
+    if (i18n.language !== savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, [i18n]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
   };
 
   const toggleLanguage = () => {
-    const newLanguage = language === "fr" ? "en" : "fr";
-    setLanguage(newLanguage);
-    localStorage.setItem("language", newLanguage);
-    // Par exemple: i18n.changeLanguage(newLanguage);
+    const newLanguage = i18n.language === 'fr' ? 'en' : 'fr';
+    i18n.changeLanguage(newLanguage).then(() => {
+      localStorage.setItem('language', newLanguage);
+      // Recharger la page pour appliquer les traductions
+      window.location.reload();
+    });
   };
 
   const isActive = (path) => {
@@ -53,108 +55,88 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        {/* Menu à gauche */}
-        <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
+        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className="nav-item">
-            <Link
-              to="/"
-              className={`nav-link ${isActive("/") ? "nav-link-active" : ""}`}
+            <Link 
+              to="/" 
+              className={`nav-link ${isActive('/') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              {language === "fr" ? "Accueil" : "Home"}
+              {t('Home')}
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link
-              to="/me"
-              className={`nav-link ${isActive("/me") ? "nav-link-active" : ""}`}
+            <Link 
+              to="/me" 
+              className={`nav-link ${isActive('/me') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              {language === "fr" ? "A propos" : "About"}
+              {t('About')}
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link
-              to="/resume"
-              className={`nav-link ${
-                isActive("/resume") ? "nav-link-active" : ""
-              }`}
+            <Link 
+              to="/resume" 
+              className={`nav-link ${isActive('/resume') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              {language === "fr" ? "Résumé" : "Resume"}
+              {t('Resume')}
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              to="/service"
-              className={`nav-link ${
-                isActive("/service") ? "nav-link-active" : ""
-              }`}
+            <Link 
+              to="/service" 
+              className={`nav-link ${isActive('/service') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              {language === "fr" ? "Services" : "Services"}
+              {t('Services')}
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              to="/portfolio"
-              className={`nav-link ${
-                isActive("/portfolio") ? "nav-link-active" : ""
-              }`}
+            <Link 
+              to="/portfolio" 
+              className={`nav-link ${isActive('/portfolio') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              {language === "fr" ? "Portfolio" : "Portfolio"}
+              {t('Portfolio')}
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              to="/contact"
-              className={`nav-link ${
-                isActive("/contact") ? "nav-link-active" : ""
-              }`}
+            <Link 
+              to="/contact" 
+              className={`nav-link ${isActive('/contact') ? 'nav-link-active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              {language === "fr" ? "Contact" : "Contact"}
+              {t('Contact')}
             </Link>
           </li>
         </ul>
 
-        {/* Contrôles à droite */}
+        {/* <div className="nav-name">
+          <span>Q.Charbel</span>
+        </div> */}
+
         <div className="nav-controls">
-          {/* Bouton de langue */}
-          <button
-            className="language-toggle"
+          <button 
+            className="language-toggle" 
             onClick={toggleLanguage}
-            aria-label={
-              language === "fr" ? "Switch to English" : "Passer en Français"
-            }
+            aria-label={i18n.language === 'fr' ? 'Switch to English' : 'Passer en Français'}
           >
-            {language === "fr" ? "EN" : "FR"}
+            {i18n.language === 'fr' ? 'EN' : 'FR'}
           </button>
 
-          {/* Bouton de thème */}
-          <button
-            className="theme-toggle"
+          <button 
+            className="theme-toggle" 
             onClick={toggleTheme}
-            aria-label={
-              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
-            }
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
-            {theme === "light" ? <FiSun /> : <TbMoon />}
+            {theme === 'light' ? <FiSun /> : <IoMoonOutline />}
           </button>
-
-          {/* <div className="nav-name">
-            <span>Q.Charbel</span>
-          </div> */}
         </div>
 
-        {/* Menu hamburger pour mobile */}
-        <div
-          className={`nav-toggle ${isMenuOpen ? "active" : ""}`}
-          onClick={toggleMenu}
-        >
+        <div className={`nav-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>

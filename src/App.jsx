@@ -13,7 +13,7 @@ import './i18n';
 function App() {
   return (
     <Router>
-      <DebugI18n /> {/* Ajoutez cette ligne */}
+      <DebugI18n />
       <Navbar />
       
       <Routes>
