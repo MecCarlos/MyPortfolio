@@ -1,18 +1,63 @@
+/* Variables pour les thèmes */
+:root {
+  /* Couleurs Light Theme */
+  --bg-gradient-light: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.3) 100%);
+  --text-color-light: #333333;
+  --border-color-light: #333333;
+  --btn-hover-bg-light: #333333;
+  --btn-hover-color-light: #ffffff;
+  --social-hover-color-light: #666666;
+  
+  /* Couleurs Dark Theme */
+  --bg-gradient-dark: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.925) 0%, 
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.2) 100%);
+  --text-color-dark: #ffffff;
+  --border-color-dark: #ffffff;
+  --btn-hover-bg-dark: #ffffff;
+  --btn-hover-color-dark: #000000;
+  --social-hover-color-dark: #cccccc;
+  
+  /* Variables actives */
+  --bg-gradient: var(--bg-gradient-dark);
+  --text-color: var(--text-color-dark);
+  --border-color: var(--border-color-dark);
+  --btn-hover-bg: var(--btn-hover-bg-dark);
+  --btn-hover-color: var(--btn-hover-color-dark);
+  --social-hover-color: var(--social-hover-color-dark);
+}
+
+[data-theme="light"] {
+  --bg-gradient: var(--bg-gradient-light);
+  --text-color: var(--text-color-light);
+  --border-color: var(--border-color-light);
+  --btn-hover-bg: var(--btn-hover-bg-light);
+  --btn-hover-color: var(--btn-hover-color-light);
+  --social-hover-color: var(--social-hover-color-light);
+}
+
+[data-theme="dark"] {
+  --bg-gradient: var(--bg-gradient-dark);
+  --text-color: var(--text-color-dark);
+  --border-color: var(--border-color-dark);
+  --btn-hover-bg: var(--btn-hover-bg-dark);
+  --btn-hover-color: var(--btn-hover-color-dark);
+  --social-hover-color: var(--social-hover-color-dark);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.home {
+.page.home {
     width: 100%;
     height: 100vh;
-    background-image: 
-        linear-gradient(to bottom, 
-            rgba(0, 0, 0, 0.925) 0%, 
-            rgba(0, 0, 0, 0.4) 50%,
-            rgba(0, 0, 0, 0.2) 100%),
-        url('../../../public/images/b2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,12 +67,27 @@
     position: relative;
     font-family: "Poppins", serif;
     overflow: hidden;
+    transition: background-image 0.5s ease;
+}
+
+/* Images de fond selon le thème */
+[data-theme="light"] .page.home {
+    background-image: 
+        var(--bg-gradient),
+        url('../../../public/images/set_lg.jpg');
+}
+
+[data-theme="dark"] .page.home {
+    background-image: 
+        var(--bg-gradient),
+        url('../../../public/images/set_dk.jpg');
 }
 
 .box.texte {
-    color: white;
+    color: var(--text-color);
     text-align: left;
     max-width: 600px;
+    transition: color 0.3s ease;
 }
 
 .name-line1 {
@@ -37,6 +97,7 @@
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
     line-height: 1.1;
+    transition: color 0.3s ease;
 }
 
 .name-line2 {
@@ -47,6 +108,7 @@
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.2s forwards;
     line-height: 1.1;
+    transition: color 0.3s ease;
 }
 
 .title {
@@ -55,6 +117,7 @@
     margin-bottom: 3rem;
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.4s forwards;
+    transition: color 0.3s ease;
 }
 
 /* Container des boutons */
@@ -70,9 +133,9 @@
 /* Style des boutons */
 .btn {
     padding: 12px 30px;
-    border: 2px solid white;
+    border: 2px solid var(--border-color);
     background: transparent;
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
@@ -84,8 +147,8 @@
 }
 
 .btn:hover {
-    background: white;
-    color: black;
+    background: var(--btn-hover-bg);
+    color: var(--btn-hover-color);
     transform: translateY(-2px);
 }
 
@@ -102,7 +165,7 @@
 }
 
 .social-link {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 1.5rem;
     transition: all 0.3s ease;
@@ -115,7 +178,7 @@
 }
 
 .social-link:hover {
-    color: #ccc;
+    color: var(--social-hover-color);
     transform: translateY(-2px);
 }
 
@@ -126,7 +189,7 @@
     left: 0;
     width: 0;
     height: 1px;
-    background: white;
+    background: var(--text-color);
     transition: width 0.3s ease;
 }
 
@@ -146,9 +209,17 @@
     }
 }
 
+/* Animation de transition globale */
+.page.home * {
+    transition: color 0.3s ease, 
+                background-color 0.3s ease, 
+                border-color 0.3s ease,
+                background-image 0.5s ease;
+}
+
 /* RESPONSIVE AMÉLIORÉ */
 @media screen and (max-width: 1200px) {
-    .home {
+    .page.home {
         padding-left: 8%;
     }
     
@@ -158,7 +229,7 @@
 }
 
 @media screen and (max-width: 992px) {
-    .home {
+    .page.home {
         padding-left: 5%;
     }
     
@@ -176,7 +247,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .home {
+    .page.home {
         padding-left: 5%;
         padding-right: 5%;
         text-align: center;
@@ -238,7 +309,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .home {
+    .page.home {
         padding-left: 1rem;
         padding-right: 1rem;
     }
@@ -280,7 +351,7 @@
 
 /* Pour les très petits écrans */
 @media screen and (max-height: 600px) {
-    .home {
+    .page.home {
         padding-top: 2rem;
         padding-bottom: 2rem;
         align-items: flex-start;

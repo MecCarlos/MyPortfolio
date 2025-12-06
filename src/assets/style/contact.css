@@ -65,7 +65,7 @@
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-y: auto;
-}
+
 
 /* Dégradé adapté au thème */
 .contact-gradient-overlay {
@@ -531,4 +531,4 @@
     min-height: 100px;
     max-height: 120px;
   }
-}
+}}
