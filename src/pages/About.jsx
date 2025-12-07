@@ -1,7 +1,7 @@
 import "../assets/style/about.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import me_b from "../../public/images/me_black.png";
+import me_b from "../../public/images/me_dark.png";
 import me_l from "../../public/images/me_light.png";
 
 export default function About() {

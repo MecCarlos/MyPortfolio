@@ -2,9 +2,9 @@
 :root {
   /* Couleurs Light Theme */
   --bg-gradient-light: linear-gradient(to bottom, 
-    rgba(255, 255, 255, 0.95) 0%, 
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.3) 100%);
+    rgba(255, 255, 255, 0.692) 0%, 
+    rgba(255, 255, 255, 0.329) 50%,
+    rgba(255, 255, 255, 0.048) 100%);
   --text-color-light: #333333;
   --border-color-light: #333333;
   --btn-hover-bg-light: #333333;
@@ -13,14 +13,14 @@
   
   /* Couleurs Dark Theme */
   --bg-gradient-dark: linear-gradient(to bottom, 
-    rgba(0, 0, 0, 0.925) 0%, 
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.2) 100%);
+    rgba(0, 0, 0, 0.678) 0%, 
+    rgba(0, 0, 0, 0.226) 50%,
+    rgba(0, 0, 0, 0.007) 100%);
   --text-color-dark: #ffffff;
   --border-color-dark: #ffffff;
   --btn-hover-bg-dark: #ffffff;
   --btn-hover-color-dark: #000000;
-  --social-hover-color-dark: #cccccc;
+  --social-hover-color-dark: #cccccc7a;
   
   /* Variables actives */
   --bg-gradient: var(--bg-gradient-dark);
@@ -74,13 +74,14 @@
 [data-theme="light"] .page.home {
     background-image: 
         var(--bg-gradient),
-        url('../../../public/images/set_lg.jpg');
+        url('../../../public/images/bg.png');
+
 }
 
 [data-theme="dark"] .page.home {
     background-image: 
         var(--bg-gradient),
-        url('../../../public/images/set_dk.jpg');
+        url('../../../public/images/bg_dark.png');
 }
 
 .box.texte {
@@ -133,7 +134,7 @@
 /* Style des boutons */
 .btn {
     padding: 12px 30px;
-    border: 2px solid var(--border-color);
+    border: 2px solid #ffffff;
     background: transparent;
     color: var(--text-color);
     text-decoration: none;

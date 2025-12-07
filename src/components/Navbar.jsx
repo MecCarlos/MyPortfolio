@@ -9,8 +9,30 @@ import { FiSun } from "react-icons/fi";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [isScrolled, setIsScrolled] = useState(false);
   const { t, i18n } = useTranslation();
   const location = useLocation();
+
+  // Gestion du scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 50;
+      if (show !== isScrolled) {
+        setIsScrolled(show);
+      }
+    };
+
+    // Ajouter l'événement de scroll
+    window.addEventListener('scroll', handleScroll);
+    
+    // Vérifier l'état initial
+    handleScroll();
+    
+    // Nettoyer
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isScrolled]);
 
   // Initialiser le thème
   useEffect(() => {
@@ -43,7 +65,6 @@ const Navbar = () => {
     const newLanguage = i18n.language === 'fr' ? 'en' : 'fr';
     i18n.changeLanguage(newLanguage).then(() => {
       localStorage.setItem('language', newLanguage);
-      // Recharger la page pour appliquer les traductions
       window.location.reload();
     });
   };
@@ -53,7 +74,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className="nav-item">
@@ -113,10 +134,6 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-
-        {/* <div className="nav-name">
-          <span>Q.Charbel</span>
-        </div> */}
 
         <div className="nav-controls">
           <button 

@@ -497,3 +497,104 @@
   color: #ffffff !important;
   stroke: #ffffff !important;
 }
+
+
+/* =========================================== */
+/* NAVBAR TRANSPARENT AVEC EFFET AU SCROLL */
+/* =========================================== */
+
+.navbar {
+  background: transparent; /* Rendre la navbar transparente initialement */
+  padding: 1.2rem 2rem; /* Légèrement plus de padding pour un meilleur effet */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(0px); /* Initialement pas de blur */
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent; /* Pas de bordure initialement */
+  box-shadow: none; /* Pas d'ombre initialement */
+}
+
+/* Classe qui s'ajoute au scroll */
+.navbar.scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  padding: 0.8rem 2rem; /* Réduire légèrement le padding au scroll */
+}
+
+/* Animation plus fluide pour les transitions */
+.nav-link {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ajuster les transitions des contrôles */
+.theme-toggle,
+.language-toggle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================== */
+/* RESPONSIVE POUR LA NAVBAR TRANSPARENTE */
+/* =========================================== */
+
+/* Tablettes */
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* Mobiles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.8rem 1rem;
+  }
+  
+  /* Menu mobile - toujours avec fond */
+  .nav-menu {
+    background: var(--menu-bg) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+  }
+}
+
+/* Petits téléphones */
+@media screen and (max-width: 576px) {
+  .navbar {
+    padding: 0.8rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.6rem;
+  }
+}
+
+/* Animation pour l'effet de transition */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar.scrolled {
+  animation: fadeInDown 0.3s ease forwards;
+}
