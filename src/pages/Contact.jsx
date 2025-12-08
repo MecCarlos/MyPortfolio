@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "../assets/style/contact.css";
 import { FaPaperPlane, FaCheckCircle, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
+    surname: "",
     email: "",
     subject: "",
     message: ""
@@ -12,6 +14,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [theme, setTheme] = useState('light');
+  const { t } = useTranslation();
 
   // Détecter le thème actuel
   useEffect(() => {
@@ -45,8 +48,8 @@ export default function Contact() {
     e.preventDefault();
     
     // Validation simple
-    if (!formData.name || !formData.email || !formData.message) {
-      alert("Veuillez remplir tous les champs obligatoires.");
+    if (!formData.name || !formData.surname || !formData.email || !formData.message) {
+      alert(t("fillRequiredFields"));
       return;
     }
 
@@ -73,7 +76,7 @@ export default function Contact() {
       setIsSubmitted(true);
     } catch (error) {
       console.error("Erreur lors de l'envoi:", error);
-      alert("Une erreur est survenue. Veuillez réessayer.");
+      alert(t("submitError"));
     } finally {
       setIsSubmitting(false);
     }
@@ -90,10 +93,9 @@ export default function Contact() {
       <div className="contact-container">
         {/* Partie gauche - Informations de contact */}
         <div className="contact-box left-box">
-          <h2>Contactez-moi</h2>
+          <h2>{t("contactMe")}</h2>
           <p className="desc">
-            N'hésitez pas à me contacter pour discuter de votre projet, 
-            demander un devis ou simplement échanger sur vos besoins.
+            {t("contactDescription")}
           </p>
           
           <div className="contact-details">
@@ -102,7 +104,7 @@ export default function Contact() {
                 <FaEnvelope />
               </div>
               <div className="detail">
-                <div className="detail-title">Email</div>
+                <div className="detail-title">{t("email")}</div>
                 <p className="detail-info">quenumcarlos20@gmail.com</p>
               </div>
             </div>
@@ -112,7 +114,7 @@ export default function Contact() {
                 <FaPhone />
               </div>
               <div className="detail">
-                <div className="detail-title">Téléphone</div>
+                <div className="detail-title">{t("phone")}</div>
                 <p className="detail-info">(+229) 01 56 98 31 33</p>
               </div>
             </div>
@@ -122,15 +124,14 @@ export default function Contact() {
                 <FaMapMarkerAlt />
               </div>
               <div className="detail">
-                <div className="detail-title">Localisation</div>
-                <p className="detail-info">Cotonou, Bénin</p>
+                <div className="detail-title">{t("location")}</div>
+                <p className="detail-info">{t("cotonouBenin")}</p>
               </div>
             </div>
           </div>
           
           <p className="desc" style={{ marginTop: '2rem' }}>
-            Je m'efforce de répondre à tous les messages dans les 24 heures.
-            Pour les demandes urgentes, privilégiez l'appel téléphonique.
+            {t("responseTime")}
           </p>
         </div>
 
@@ -138,13 +139,13 @@ export default function Contact() {
         <div className="contact-box right-box">
           {!isSubmitted ? (
             <form onSubmit={handleSubmit}>
-              <h3 className="heading">Envoyez-moi <span>un message</span></h3>
+              <h3 className="heading">{t("sendMe")} <span>{t("aMessage")}</span></h3>
               
               <div className="field-box">
                 <input
                   type="text"
                   name="name"
-                  placeholder="Votre nom *"
+                  placeholder={`${t("yourName")} *`}
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -152,8 +153,8 @@ export default function Contact() {
 
                 <input
                   type="text"
-                  name="name"
-                  placeholder="Votre prénnom *"
+                  name="surname"
+                  placeholder={`${t("yourSurname")} *`}
                   value={formData.surname}
                   onChange={handleChange}
                   required
@@ -162,7 +163,7 @@ export default function Contact() {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Votre email *"
+                  placeholder={`${t("yourEmail")} *`}
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -171,14 +172,14 @@ export default function Contact() {
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Sujet (optionnel)"
+                  placeholder={`${t("subjectOptional")}`}
                   value={formData.subject}
                   onChange={handleChange}
                 />
                 
                 <textarea
                   name="message"
-                  placeholder="Votre message *"
+                  placeholder={`${t("yourMessage")} *`}
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -193,12 +194,12 @@ export default function Contact() {
                 {isSubmitting ? (
                   <>
                     <div className="loading-spinner"></div>
-                    Envoi en cours...
+                    {t("sending")}...
                   </>
                 ) : (
                   <>
                     <FaPaperPlane className="submit-icon" />
-                    Envoyer
+                    {t("send")}
                   </>
                 )}
               </button>
@@ -206,15 +207,15 @@ export default function Contact() {
           ) : (
             <div className="success-message">
               <FaCheckCircle className="success-icon" />
-              <h3 className="success-title">Message envoyé !</h3>
+              <h3 className="success-title">{t("messageSent")}!</h3>
               <p className="success-text">
-                Merci pour votre message. Je vous répondrai dans les plus brefs délais.
+                {t("thankYouMessage")}
               </p>
               <button 
                 className="success-btn"
                 onClick={resetForm}
               >
-                Envoyer un autre message
+                {t("sendAnotherMessage")}
               </button>
             </div>
           )}

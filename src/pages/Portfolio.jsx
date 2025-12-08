@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "../assets/style/portfolio.css";
 import {
   FaExternalLinkAlt,
@@ -17,6 +18,7 @@ export default function Portfolio() {
   const [activeProject, setActiveProject] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [theme, setTheme] = useState("light");
+  const { t } = useTranslation();
 
   // Détecter le thème actuel
   useEffect(() => {
@@ -43,9 +45,8 @@ export default function Portfolio() {
     {
       id: 1,
       number: "01",
-      title: "BEI Bank",
-      description:
-        "Application bancaire en ligne sécurisée avec système de gestion de comptes, virements, prêts et épargne. Interface responsive, authentification à deux facteurs et tableau de bord financier personnalisé pour les clients.",
+      title: t("beiBankTitle"),
+      description: t("beiBankDesc"),
       technologies: [
         "ReactJS",
         "TypeScript",
@@ -63,14 +64,13 @@ export default function Portfolio() {
       ],
       type: "web",
       typeIcon: <GiMoneyStack />,
-      typeName: "Web App",
+      typeName: t("webApp"),
     },
     {
       id: 2,
       number: "02",
-      title: "Olatech Store",
-      description:
-        "Site e-commerce moderne spécialisé en produits technologiques. Catalogue dynamique, panier intelligent, système de paiement sécurisé, gestion des stocks et espace client avec historique des commandes.",
+      title: t("olatechStoreTitle"),
+      description: t("olatechStoreDesc"),
       technologies: [
         "ReactJS",
         "Redux Toolkit",
@@ -88,15 +88,13 @@ export default function Portfolio() {
       ],
       type: "web",
       typeIcon: <MdOutlineLocalGroceryStore />,
-      typeName: "E-commerce",
+      typeName: t("ecommerce"),
     },
-
     {
       id: 3,
       number: "03",
-      title: "Portfolio 3D Immersif",
-      description:
-        "Portfolio interactif en 3D utilisant Three.js et React Three Fiber. Expérience immersive avec animations 3D fluides, navigation spatiale et éléments interactifs. Interface moderne qui repousse les limites du web traditionnel.",
+      title: t("portfolio3DTitle"),
+      description: t("portfolio3DDesc"),
       technologies: [
         "React",
         "Three.js",
@@ -115,15 +113,13 @@ export default function Portfolio() {
       ],
       type: "web",
       typeIcon: <GiCube />,
-      typeName: "Web App 3D",
+      typeName: t("webApp3D"),
     },
-
     {
       id: 4,
       number: "04",
-      title: "Portfolio Personnel",
-      description:
-        "Portfolio moderne et responsive présentant mes compétences et réalisations. Design épuré avec animations fluides, sections interactives, mode sombre/clair et optimisation des performances pour une expérience utilisateur optimale.",
+      title: t("personalPortfolioTitle"),
+      description: t("personalPortfolioDesc"),
       technologies: [
         "ReactJS",
         "CSS3",
@@ -141,14 +137,13 @@ export default function Portfolio() {
       ],
       type: "design",
       typeIcon: <MdDesignServices />,
-      typeName: "Portfolio",
+      typeName: t("portfolioType"),
     },
     {
       id: 5,
       number: "05",
-      title: "Serenji",
-      description:
-        "Plateforme d'accès et gestion de médicaments en cours de développement avec React et Node.js. Système de tâches avancé, tableau de bord analytique, notifications en temps réel et chat intégré pour une gestion optimale des produits.",
+      title: t("serenjiTitle"),
+      description: t("serenjiDesc"),
       technologies: [
         "ReactJS",
         "NodeJS",
@@ -166,7 +161,7 @@ export default function Portfolio() {
       ],
       type: "web",
       typeIcon: <FaLaptopMedical />,
-      typeName: "SaaS",
+      typeName: t("saas"),
     },
   ];
 
@@ -210,26 +205,24 @@ export default function Portfolio() {
         {/* En-tête */}
         <div className="portfolio-header">
           <h1 className="portfolio-title">
-            Mes <span className="highlight">Projets</span>
+            {t("My")} <span className="highlight">{t("Projects")}</span>
           </h1>
           <div className="portfolio-underline"></div>
           <p className="portfolio-intro">
-            Découvrez une sélection de mes projets les plus significatifs.
-            Chaque réalisation représente un défi technique et créatif relevé
-            avec passion et expertise.
+            {t("portfolioIntro")}
           </p>
         </div>
 
-        {/* Navigation entre projets - BOUTONS RONDS */}
+        {/* Navigation entre projets */}
         <div className="project-navigation">
           <button
             className="project-nav prev"
             onClick={prevProject}
-            title="Projet précédent"
-            aria-label="Projet précédent"
+            title={t("previousProject")}
+            aria-label={t("previousProject")}
           >
             <FaChevronLeft />
-            <span className="nav-text">Précédent</span>
+            <span className="nav-text">{t("previous")}</span>
           </button>
 
           <div className="project-indicators">
@@ -240,8 +233,8 @@ export default function Portfolio() {
                   activeProject === index ? "active" : ""
                 }`}
                 onClick={() => goToProject(index)}
-                title={`Voir le projet ${index + 1}`}
-                aria-label={`Projet ${index + 1}`}
+                title={`${t("viewProject")} ${index + 1}`}
+                aria-label={`${t("project")} ${index + 1}`}
               />
             ))}
           </div>
@@ -249,10 +242,10 @@ export default function Portfolio() {
           <button
             className="project-nav next"
             onClick={nextProject}
-            title="Projet suivant"
-            aria-label="Projet suivant"
+            title={t("nextProject")}
+            aria-label={t("nextProject")}
           >
-            <span className="nav-text">Suivant</span>
+            <span className="nav-text">{t("next")}</span>
             <FaChevronRight />
           </button>
         </div>
@@ -277,7 +270,7 @@ export default function Portfolio() {
                 <p className="project-description">{project.description}</p>
 
                 <div className="technologies">
-                  <div className="tech-title">Technologies utilisées :</div>
+                  <div className="tech-title">{t("technologiesUsed")}:</div>
                   <div className="tech-tags">
                     {project.technologies.map((tech, techIndex) => (
                       <span key={techIndex} className="tech-tag">
@@ -296,12 +289,12 @@ export default function Portfolio() {
                       className="live-link"
                     >
                       <FaExternalLinkAlt className="link-icon" />
-                      Voir le projet
+                      {t("viewProject")}
                     </a>
                   ) : (
                     <span className="live-link disabled">
                       <FaExternalLinkAlt className="link-icon" />
-                      Projet en cours
+                      {t("projectInProgress")}
                     </span>
                   )}
                   {project.githubUrl && project.githubUrl !== "#" ? (
@@ -312,12 +305,12 @@ export default function Portfolio() {
                       className="github-link"
                     >
                       <FaGithub className="link-icon" />
-                      Code source
+                      {t("sourceCode")}
                     </a>
                   ) : (
                     <span className="github-link disabled">
                       <FaGithub className="link-icon" />
-                      Privé
+                      {t("private")}
                     </span>
                   )}
                 </div>
@@ -329,7 +322,7 @@ export default function Portfolio() {
           <div className="portfolio-carousel">
             <div className="carousel-header">
               <div className="carousel-title">
-                <h4>VISUELS DU PROJET</h4>
+                <h4>{t("projectVisuals")}</h4>
                 <div className="project-type">{currentProject.typeName}</div>
               </div>
             </div>
@@ -345,7 +338,7 @@ export default function Portfolio() {
                   <div key={index} className="image-item">
                     <img
                       src={image}
-                      alt={`${currentProject.title} - Vue ${index + 1}`}
+                      alt={`${currentProject.title} - ${t("view")} ${index + 1}`}
                       loading="lazy"
                     />
                     <div className="image-overlay">
@@ -363,7 +356,7 @@ export default function Portfolio() {
                   className="nav-arrow"
                   onClick={prevImage}
                   disabled={currentProject.images.length <= 1}
-                  aria-label="Image précédente"
+                  aria-label={t("previousImage")}
                 >
                   <FaChevronLeft />
                 </button>
@@ -376,7 +369,7 @@ export default function Portfolio() {
                         currentImageIndex === index ? "active" : ""
                       }`}
                       onClick={() => goToImage(index)}
-                      aria-label={`Aller à l'image ${index + 1}`}
+                      aria-label={`${t("goToImage")} ${index + 1}`}
                     />
                   ))}
                 </div>
@@ -385,7 +378,7 @@ export default function Portfolio() {
                   className="nav-arrow"
                   onClick={nextImage}
                   disabled={currentProject.images.length <= 1}
-                  aria-label="Image suivante"
+                  aria-label={t("nextImage")}
                 >
                   <FaChevronRight />
                 </button>
@@ -397,24 +390,14 @@ export default function Portfolio() {
         {/* Section CTA */}
         <div className="portfolio-cta">
           <div className="cta-content">
-            <h2 className="cta-title">Vous avez un projet en tête ?</h2>
+            <h2 className="cta-title">{t("haveAProject")}</h2>
             <p className="cta-description">
-              Que vous ayez besoin d'une application web, d'un site mobile ou
-              d'une solution sur mesure, je suis là pour vous aider à
-              concrétiser vos idées.
+              {t("portfolioCTA")}
             </p>
             <div className="cta-buttons">
               <a href="#contact" className="cta-btn primary">
-                Discuter de votre projet
+                {t("discussYourProject")}
               </a>
-              {/* <a
-                href="https://github.com/MecCarlos"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cta-btn secondary"
-              >
-                Voir sur GitHub
-              </a> */}
             </div>
           </div>
         </div>

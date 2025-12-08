@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import "../assets/style/service.css";
 
 // Import des icônes React Icons
@@ -8,158 +10,83 @@ import { GiCircuitry, GiSolarPower } from "react-icons/gi";
 import { HiHomeModern } from "react-icons/hi2";
 import { TbDeviceAnalytics } from "react-icons/tb";
 import { RiAppStoreFill } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
-
 
 export default function Service() {
   const [activeService, setActiveService] = useState(null);
+  const { t } = useTranslation();
 
   const services = [
     {
       id: "web",
-      title: "Développement Web",
-      description: "Création de sites web modernes et performants avec les technologies frontend (HTML5, CSS3, JavaScript, React) et backend (PHP, MySQL).",
+      title: t("webDevelopment"),
+      description: t("webDevelopmentDesc"),
       icon: <FaCode />,
       technologies: ["HTML5", "CSS3", "JavaScript", "React", "PHP", "MySQL", "Bootstrap", "Tailwind"],
-      features: [
-        "Sites web responsives et modernes",
-        "Applications web dynamiques",
-        "Intégration de maquettes UI/UX",
-        "Optimisation des performances",
-        "Connexion aux APIs",
-        "Bases de données MySQL"
-      ]
+      features: t("webFeatures", { returnObjects: true })
     },
     {
       id: "frontend",
-      title: "Développement Frontend",
-      description: "Développement d'interfaces utilisateur modernes avec React.js, création de composants réutilisables et optimisation de l'expérience utilisateur.",
+      title: t("frontendDevelopment"),
+      description: t("frontendDevelopmentDesc"),
       icon: <MdDesignServices />,
       technologies: ["React", "JavaScript", "HTML5", "CSS3", "Bootstrap", "Tailwind"],
-      features: [
-        "Interfaces React performantes",
-        "Composants réutilisables",
-        "Design responsive",
-        "Animations modernes",
-        "Optimisation SEO",
-        "Tests et débogage"
-      ]
+      features: t("frontendFeatures", { returnObjects: true })
     },
     {
       id: "app-design",
-      title: "Design d'Applications",
-      description: "Conception d'interfaces utilisateur modernes et intuitives pour applications web et mobiles. Focus sur l'expérience utilisateur et l'esthétique.",
+      title: t("appDesign"),
+      description: t("appDesignDesc"),
       icon: <RiAppStoreFill />,
-      technologies: ["Figma", "Adobe XD", "UI/UX Design", "Prototypage", "Wireframing"],
-      features: [
-        "Design d'interfaces modernes",
-        "Expérience utilisateur optimisée",
-        "Prototypes interactifs",
-        "Wireframes et maquettes",
-        "Design system",
-        "Tests utilisateurs"
-      ]
+      technologies: ["Figma", "Adobe XD", "UI/UX Design", "Prototyping", "Wireframing"],
+      features: t("appDesignFeatures", { returnObjects: true })
     },
-    // {
-    //   id: "mobile",
-    //   title: "Développement Mobile",
-    //   description: "Création d'applications mobiles avec Flutter pour iOS et Android. Interfaces natives et performances optimales.",
-    //   icon: <FaMobileAlt />,
-    //   technologies: ["Flutter", "Dart", "APIs REST", "Firebase", "App Store", "Play Store"],
-    //   features: [
-    //     "Applications iOS et Android",
-    //     "Interfaces natives",
-    //     "Optimisation des performances",
-    //     "Intégration d'APIs",
-    //     "Publication sur stores",
-    //     "Maintenance et mises à jour"
-    //   ]
-    // },
     {
       id: "database",
-      title: "Bases de Données",
-      description: "Conception, développement et optimisation de bases de données MySQL pour applications web et mobiles.",
+      title: t("database"),
+      description: t("databaseDesc"),
       icon: <FaDatabase />,
-      technologies: ["MySQL", "PHP", "APIs REST", "Optimisation"],
-      features: [
-        "Conception de schémas de base de données",
-        "Optimisation des requêtes SQL",
-        "Sécurité des données",
-        "Sauvegardes et restauration",
-        "Migration de données",
-      ]
+      technologies: ["MySQL", "PHP", "REST APIs", "Optimization"],
+      features: t("databaseFeatures", { returnObjects: true })
     },
     {
       id: "electronique",
-      title: "Électronique & Maintenance",
-      description: "Services techniques en électronique : maintenance, réparation et installation de systèmes électroniques divers.",
+      title: t("electronicsMaintenance"),
+      description: t("electronicsMaintenanceDesc"),
       icon: <GiCircuitry />,
-      technologies: ["Électronique analogique/digitale", "Outils de diagnostic", "Soudure", "Test équipements"],
-      features: [
-        "Diagnostic et dépannage électronique",
-        "Réparation de circuits imprimés",
-        "Maintenance préventive",
-        "Installation de systèmes",
-        "Tests et contrôles qualité",
-        "Documentation technique"
-      ]
+      technologies: [t("analogDigitalElectronics"), t("diagnosticTools"), t("soldering"), t("testEquipment")],
+      features: t("electronicsFeatures", { returnObjects: true })
     },
     {
       id: "satellite",
-      title: "Installation Satellite",
-      description: "Installation, configuration et maintenance de systèmes de réception satellite (TV, internet).",
+      title: t("satelliteInstallation"),
+      description: t("satelliteInstallationDesc"),
       icon: <MdSatelliteAlt />,
-      technologies: ["Antennes paraboliques", "Récepteurs", "Amplificateurs", "Câblage coaxial"],
-      features: [
-        "Installation d'antennes paraboliques",
-        "Alignement et pointage satellite",
-        "Configuration des récepteurs",
-        "Résolution des problèmes de signal",
-        "Mise à niveau des systèmes",
-        "Support technique"
-      ]
+      technologies: [t("satelliteDishes"), t("receivers"), t("amplifiers"), t("coaxialCabling")],
+      features: t("satelliteFeatures", { returnObjects: true })
     },
     {
       id: "securite",
-      title: "Sécurité Électronique",
-      description: "Installation et maintenance de systèmes de vidéosurveillance et contrôle d'accès.",
+      title: t("electronicSecurity"),
+      description: t("electronicSecurityDesc"),
       icon: <MdSecurity />,
-      technologies: ["Caméras IP/Analogiques", "Enregistreurs DVR/NVR", "Détecteurs", "Contrôle d'accès"],
-      features: [
-        "Installation de caméras de surveillance",
-        "Configuration des systèmes DVR/NVR",
-        "Monitoring à distance",
-        "Maintenance préventive",
-        "Formation utilisateur"
-      ]
+      technologies: [t("ipAnalogCameras"), t("dvrNvrRecorders"), t("detectors"), t("accessControl")],
+      features: t("securityFeatures", { returnObjects: true })
     },
     {
       id: "solaire",
-      title: "Énergie Solaire",
-      description: "Installation et maintenance de systèmes d'énergie solaire pour particuliers.",
+      title: t("solarEnergy"),
+      description: t("solarEnergyDesc"),
       icon: <GiSolarPower />,
-      technologies: ["Panneaux solaires", "Onduleurs", "Batteries", "Régulateurs de charge"],
-      features: [
-        "Étude et dimensionnement",
-        "Installation de panneaux solaires",
-        "Mise en service des onduleurs",
-        "Maintenance des batteries",
-        "Optimisation de production",
-        "Diagnostic de performance"
-      ]
+      technologies: [t("solarPanels"), t("inverters"), t("batteries"), t("chargeControllers")],
+      features: t("solarFeatures", { returnObjects: true })
     },
     {
       id: "domotique",
-      title: "Installation Domestique",
-      description: "Services d'installation électrique et électronique pour particuliers : éclairage.",
+      title: t("homeInstallation"),
+      description: t("homeInstallationDesc"),
       icon: <HiHomeModern />,
-      technologies: ["Câblage électrique", "Systèmes domotiques", "Éclairage LED", "Audio/Video", "Réseau"],
-      features: [
-        "Installation électrique résidentielle",
-        "Installation de prises réseau",
-        "Dépannage électrique",
-        "Conseils en économie d'énergie"
-      ]
+      technologies: [t("electricalWiring"), t("homeAutomation"), t("ledLighting"), t("network")],
+      features: t("homeFeatures", { returnObjects: true })
     }
   ];
 
@@ -169,21 +96,17 @@ export default function Service() {
 
   return (
     <div className="page service">
-      {/* Dégradé similaire aux autres pages */}
       <div className="service-gradient-overlay"></div>
       
       <div className="service-container">
-        {/* En-tête */}
         <div className="service-header">
-          <h2 className="service-title">Mes <span className="highlight">Services</span></h2>
+          <h2 className="service-title">{t("My")} <span className="highlight">{t("Services")}</span></h2>
           <div className="service-underline"></div>
           <p className="service-intro">
-            Fort de ma double compétence en développement web et expertise technique en électronique, 
-            je propose une gamme complète de services pour répondre à vos besoins numériques et techniques.
+            {t("serviceIntro")}
           </p>
         </div>
 
-        {/* Grille des services */}
         <div className="services-grid">
           {services.map((service) => (
             <div 
@@ -204,7 +127,7 @@ export default function Service() {
                 {activeService === service.id && (
                   <div className="card-details">
                     <div className="technologies">
-                      <h4>Technologies utilisées :</h4>
+                      <h4>{t("technologiesUsed")}:</h4>
                       <div className="tech-tags">
                         {service.technologies.map((tech, index) => (
                           <span key={index} className="tech-tag">{tech}</span>
@@ -213,7 +136,7 @@ export default function Service() {
                     </div>
                     
                     <div className="features">
-                      <h4>Ce que je propose :</h4>
+                      <h4>{t("whatIOffer")}:</h4>
                       <ul className="features-list">
                         {service.features.map((feature, index) => (
                           <li key={index} className="feature-item">
@@ -232,27 +155,25 @@ export default function Service() {
                   {activeService === service.id ? '−' : '+'}
                 </span>
                 <span className="cta-text">
-                  {activeService === service.id ? 'Voir moins' : 'En savoir plus'}
+                  {activeService === service.id ? t("seeLess") : t("seeMore")}
                 </span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Section d'appel à l'action */}
         <div className="service-cta">
           <div className="cta-content">
-            <h3 className="cta-title">Un projet en tête ?</h3>
+            <h3 className="cta-title">{t("haveAProject")}</h3>
             <p className="cta-description">
-              Que ce soit pour un site web, une application mobile, une installation technique 
-              ou un design d'interface, je suis disponible pour discuter de votre projet.
+              {t("projectDescription")}
             </p>
             <div className="cta-buttons">
-              <a href="https://wa.me/56983133"  className="cta-btn primary">
-                Discuter de mon projet
+              <a href="https://wa.me/2290156983133" className="cta-btn primary">
+                {t("discussMyProject")}
               </a>
               <NavLink to="/portfolio" className="cta-btn secondary">
-                Voir mon portfolio
+                {t("viewMyPortfolio")}
               </NavLink>
             </div>
           </div>

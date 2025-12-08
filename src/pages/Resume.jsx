@@ -1,4 +1,6 @@
+// components/Resume.js
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "../assets/style/resume.css";
 import { FaHtml5 } from "react-icons/fa6";
 import { IoLogoCss3 } from "react-icons/io5";
@@ -16,13 +18,13 @@ import { IoLogoFigma } from "react-icons/io5";
 export default function Resume() {
   const [activeTab, setActiveTab] = useState("experience");
   const [theme, setTheme] = useState('light');
- 
+  const { t } = useTranslation();
+  
   // Détecter le thème actuel
   useEffect(() => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     setTheme(currentTheme);
 
-    // Observer les changements de thème
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -38,11 +40,11 @@ export default function Resume() {
   }, []);
 
   const tabs = [
-    { id: "experience", label: "Expérience" },
-    { id: "education", label: "Éducation" },
-    { id: "formation", label: "Formation" },
-    { id: "skills", label: "Compétences" },
-    { id: "about", label: "À propos" },
+    { id: "experience", label: t("Experience") },
+    { id: "education", label: t("Education") },
+    { id: "training", label: t("Training") },
+    { id: "skills", label: t("Skills") },
+    { id: "about", label: t("About") },
   ];
 
   const renderContent = () => {
@@ -52,49 +54,38 @@ export default function Resume() {
           <div className="resume-detail experience active">
             <div className="section-header">
               <h2 className="section-title">
-                Mes <span className="highlight">Expérience</span>
+                {t("My")} <span className="highlight">{t("Experience")}</span>
               </h2>
               <div className="underline"></div>
             </div>
 
             <div className="description">
-              <p>
-                Passionné par le développement web, j'ai acquis une solide expérience dans la création 
-                d'interfaces modernes et performantes. Mon approche combine rigueur technique et sens 
-                du design pour offrir des expériences utilisateur exceptionnelles.
-              </p>
+              <p>{t("experienceDescription")}</p>
             </div>
 
             <div className="resume-list">
               <div className="resume-item">
                 <div className="resume-header">
-                  <span className="year">Octobre 2025 - Mars 2026</span>
-                  <h3>Stagiaire Développeur Frontend</h3>
+                  <span className="year">{t("oct2025Mar2026")}</span>
+                  <h3>{t("frontendIntern")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
                   <span>Inawo Technologie</span>
                 </div>
-                <p className="resume-desc">
-                  Développement d'applications web avec React.js, création de composants réutilisables,
-                  intégration d'API REST, optimisation des performances et participation aux revues de code.
-                </p>
+                <p className="resume-desc">{t("internship1Description")}</p>
               </div>
 
               <div className="resume-item">
                 <div className="resume-header">
-                  <span className="year">Mars - Juin 2025</span>
-                  <h3>Stagiaire Développeur Frontend</h3>
+                  <span className="year">{t("marJun2025")}</span>
+                  <h3>{t("frontendIntern")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
                   <span>Inawo Technologie</span>
                 </div>
-                <p className="resume-desc">
-                  Initiation au développement frontend moderne, création d'interfaces responsives avec 
-                  Bootstrap, apprentissage des bonnes pratiques de développement et collaboration avec 
-                  une équipe agile.
-                </p>
+                <p className="resume-desc">{t("internship2Description")}</p>
               </div>
             </div>
           </div>
@@ -105,113 +96,92 @@ export default function Resume() {
           <div className="resume-detail education active">
             <div className="section-header">
               <h2 className="section-title">
-                Mon <span className="highlight">Parcours Académique</span>
+                {t("My")} <span className="highlight">{t("AcademicPath")}</span>
               </h2>
               <div className="underline"></div>
             </div>
 
             <div className="description">
-              <p>
-                Mon parcours éducatif allie formation technique et études supérieures en informatique,
-                me permettant d'acquérir une double compétence en développement logiciel et systèmes informatiques.
-              </p>
+              <p>{t("educationDescription")}</p>
             </div>
 
             <div className="resume-list">
               <div className="resume-item">
                 <div className="resume-header">
                   <span className="year">2023 - 2025</span>
-                  <h3>Licence en Systèmes et Logiciels Informatiques</h3>
+                  <h3>{t("licenseDegree")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
                   <span>UATM Gasa Formation</span>
                 </div>
-                <p className="resume-desc">
-                  Spécialisation en développement web, bases de données, architecture logicielle 
-                  et gestion de projet. Formation axée sur les technologies modernes et les méthodologies agiles.
-                </p>
+                <p className="resume-desc">{t("licenseDescription")}</p>
               </div>
 
               <div className="resume-item">
                 <div className="resume-header">
                   <span className="year">2018 - 2021</span>
-                  <h3>Diplôme de Technicien en Informatique (DTI)</h3>
+                  <h3>{t("dtiDegree")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
-                  <span>Lycée Technique FM Coulibaly</span>
+                  <span>{t("fmcSchool")}</span>
                 </div>
-                <p className="resume-desc">
-                  Formation technique en développement logiciel, maintenance informatique, réseaux 
-                  et bases de données. Acquisition des fondamentaux de la programmation et des systèmes.
-                </p>
+                <p className="resume-desc">{t("dtiDescription")}</p>
               </div>
 
               <div className="resume-item">
                 <div className="resume-header">
                   <span className="year">2018 - 2021</span>
-                  <h3>Formation en Électronique Industrielle (2<sup>nd</sup> F3)</h3>
+                  <h3>{t("f3Training")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
-                  <span>École Polytechnique Joseph Monier</span>
+                  <span>{t("polytechSchool")}</span>
                 </div>
-                <p className="resume-desc">
-                  Apprentissage des systèmes automatisés, électrotechnique, régulation et contrôle 
-                  industriel. Développement d'une approche méthodique pour la résolution de problèmes techniques.
-                </p>
+                <p className="resume-desc">{t("f3Description")}</p>
               </div>
 
               <div className="resume-item">
                 <div className="resume-header">
                   <span className="year">2013 - 2017</span>
-                  <h3>Brevet d'Études du Premier Cycle (BEPC)</h3>
+                  <h3>{t("bepcDegree")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
-                  <span>CEG Houeyiho</span>
+                  <span>{t("houeyihoSchool")}</span>
                 </div>
-                <p className="resume-desc">
-                  Formation générale avec initiation aux technologies de l'information et de la communication.
-                  Développement d'un intérêt précoce pour l'informatique et les nouvelles technologies.
-                </p>
+                <p className="resume-desc">{t("bepcDescription")}</p>
               </div>
             </div>
           </div>
         );
 
-      case "formation":
+      case "training":
         return (
           <div className="resume-detail education active">
             <div className="section-header">
               <h2 className="section-title">
-                Mes <span className="highlight">Formations Techniques</span>
+                {t("My")} <span className="highlight">{t("TechnicalTraining")}</span>
               </h2>
               <div className="underline"></div>
             </div>
 
             <div className="description">
-              <p>
-                En parallèle de mon parcours informatique, j'ai développé des compétences techniques 
-                en électronique qui enrichissent ma polyvalence et ma compréhension des systèmes complexes.
-              </p>
+              <p>{t("trainingDescription")}</p>
             </div>
 
             <div className="resume-list">
               <div className="resume-item">
                 <div className="resume-header">
                   <span className="year">2022 - 2023</span>
-                  <h3>Diplôme en Électronique Générale et Industrielle</h3>
+                  <h3>{t("electronicsDegree")}</h3>
                 </div>
                 <div className="company">
                   <span className="dot"></span>
-                  <span>Centre Africain en Électronique (CAE)</span>
+                  <span>{t("caeCenter")}</span>
                 </div>
-                <p className="resume-desc">
-                  Formation complète en électronique analogique et numérique, maintenance des systèmes 
-                  électroniques, conception de circuits et dépannage des équipements techniques.
-                </p>
+                <p className="resume-desc">{t("electronicsDescription")}</p>
               </div>
             </div>
           </div>
@@ -222,16 +192,13 @@ export default function Resume() {
           <div className="resume-detail skills active">
             <div className="section-header">
               <h2 className="section-title">
-                Mes <span className="highlight">Compétences</span>
+                {t("My")} <span className="highlight">{t("Skills")}</span>
               </h2>
               <div className="underline"></div>
             </div>
 
             <div className="description">
-              <p>
-                Mon profil unique combine compétences en développement web et expertise technique en électronique.
-                Cette double compétence me permet d'aborder les projets avec une vision globale et innovante.
-              </p>
+              <p>{t("skillsDescription")}</p>
             </div>
 
             <div className="skills-grid">
@@ -295,28 +262,28 @@ export default function Resume() {
                 <div className="skill-icon">
                   <PiScrewdriverFill />
                 </div>
-                <span className="skill-name">Maintenance Électronique</span>
+                <span className="skill-name">{t("ElectronicsMaintenance")}</span>
               </div>
 
               <div className="skill-item">
                 <div className="skill-icon">
                   <FaSatelliteDish />
                 </div>
-                <span className="skill-name">Systèmes Satellite</span>
+                <span className="skill-name">{t("SatelliteSystems")}</span>
               </div>
 
               <div className="skill-item">
                 <div className="skill-icon">
                   <PiSecurityCameraFill />
                 </div>
-                <span className="skill-name">Sécurité Électronique</span>
+                <span className="skill-name">{t("ElectronicSecurity")}</span>
               </div>
 
               <div className="skill-item">
                 <div className="skill-icon">
                   <PiSolarPanelFill />
                 </div>
-                <span className="skill-name">Énergie Solaire</span>
+                <span className="skill-name">{t("SolarEnergy")}</span>
               </div>
             </div>
           </div>
@@ -327,44 +294,26 @@ export default function Resume() {
           <div className="resume-detail about active">
             <div className="section-header">
               <h2 className="section-title">
-                À propos <span className="highlight">de moi</span>
+                {t("About")} <span className="highlight">{t("me")}</span>
               </h2>
               <div className="underline"></div>
             </div>
 
             <div className="description">
-              <p>
-                Développeur web passionné et technicien en électronique, je combine créativité numérique 
-                et expertise technique. Curieux et autodidacte, j'aime relever des défis complexes et 
-                trouver des solutions innovantes aux problèmes techniques.
-              </p>
+              <p>{t("aboutDescription")}</p>
             </div>
 
             <div className="about-info-list">
               <div className="info-row">
                 <div className="info-item">
                   <p>
-                    Nom<span>Quenum Charbel</span>
+                    {t("Name")}<span>Quenum Charbel</span>
                   </p>
                 </div>
 
                 <div className="info-item">
                   <p>
-                    Genre<span>Masculin</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="info-row">
-                <div className="info-item">
-                  <p>
-                    Âge<span>23 ans</span>
-                  </p>
-                </div>
-
-                <div className="info-item">
-                  <p>
-                    Statut<span>Célibataire</span>
+                    {t("Gender")}<span>{t("Male")}</span>
                   </p>
                 </div>
               </div>
@@ -372,27 +321,13 @@ export default function Resume() {
               <div className="info-row">
                 <div className="info-item">
                   <p>
-                    Ville<span>Cotonou, Bénin</span>
+                    {t("Age")}<span>{t("23Years")}</span>
                   </p>
                 </div>
 
                 <div className="info-item">
                   <p>
-                    Nationalité<span>Béninoise</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="info-row">
-                <div className="info-item">
-                  <p>
-                    Expérience<span>2+ années</span>
-                  </p>
-                </div>
-
-                <div className="info-item">
-                  <p>
-                    Temps plein<span>Disponible</span>
+                    {t("Status")}<span>{t("Single")}</span>
                   </p>
                 </div>
               </div>
@@ -400,27 +335,13 @@ export default function Resume() {
               <div className="info-row">
                 <div className="info-item">
                   <p>
-                    Freelance<span>Disponible</span>
+                    {t("City")}<span>Cotonou, Bénin</span>
                   </p>
                 </div>
 
                 <div className="info-item">
                   <p>
-                    Téléphone<span>(+229) 01 56 98 31 33</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="info-row">
-                <div className="info-item">
-                  <p>
-                    Email<span>quenumcarlos20@gmail.com</span>
-                  </p>
-                </div>
-
-                <div className="info-item">
-                  <p>
-                    Langues<span>Français, Fon, Anglais</span>
+                    {t("Nationality")}<span>{t("Beninese")}</span>
                   </p>
                 </div>
               </div>
@@ -428,13 +349,55 @@ export default function Resume() {
               <div className="info-row">
                 <div className="info-item">
                   <p>
-                    Email<span>quenumcarlos20@icloud.com</span>
+                    {t("Experience")}<span>2+ {t("years")}</span>
                   </p>
                 </div>
 
                 <div className="info-item">
                   <p>
-                    Loisirs<span>Lecture, Documentaires, Bricolage</span>
+                    {t("FullTime")}<span>{t("Available")}</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="info-row">
+                <div className="info-item">
+                  <p>
+                    {t("Freelance")}<span>{t("Available")}</span>
+                  </p>
+                </div>
+
+                <div className="info-item">
+                  <p>
+                    {t("Phone")}<span>(+229) 01 56 98 31 33</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="info-row">
+                <div className="info-item">
+                  <p>
+                    {t("Email")}<span>quenumcarlos20@gmail.com</span>
+                  </p>
+                </div>
+
+                <div className="info-item">
+                  <p>
+                    {t("Languages")}<span>{t("FrenchFonEnglish")}</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="info-row">
+                <div className="info-item">
+                  <p>
+                    {t("Email2")}<span>quenumcarlos20@icloud.com</span>
+                  </p>
+                </div>
+
+                <div className="info-item">
+                  <p>
+                    {t("Hobbies")}<span>{t("ReadingDocsDIY")}</span>
                   </p>
                 </div>
               </div>
@@ -454,16 +417,12 @@ export default function Resume() {
       <div className="resume-container">
         <div className="resume-sidebar">
           <div className="sidebar-header">
-            <h2 className="sidebar-title">Pourquoi me choisir ?</h2>
+            <h2 className="sidebar-title">{t("WhyChooseMe")}</h2>
             <div className="sidebar-underline"></div>
           </div>
 
           <div className="sidebar-description">
-            <p>
-              Polyvalent et passionné, je combine expertise en développement web et compétences techniques 
-              en électronique. Mon approche unique permet d'apporter des solutions innovantes et complètes 
-              à vos projets numériques et techniques.
-            </p>
+            <p>{t("chooseMeDescription")}</p>
           </div>
 
           <div className="tabs-container">
